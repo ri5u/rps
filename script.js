@@ -46,7 +46,7 @@ function playRound(humanChoice, computerChoice){
 }
 
 
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".choice");
 buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
         let human = e.target.id;
@@ -62,5 +62,18 @@ buttons.forEach((button) => {
     });
 });
 
+const reset = document.querySelector(".reset");
 
+reset.addEventListener("click", (e) => {
+    e.target.style.backgroundColor = "lightpink";
+
+    setTimeout(() => {
+        e.target.style.backgroundColor = "";
+    }, 200);
+    humanScore = 0;
+    computerScore = 0;
+    pChoice.textContent = "";
+    pWinner.textContent = "";
+    pScore.innerHTML = `Human: ${humanScore} <br> Computer: ${computerScore}`;
+})
 
