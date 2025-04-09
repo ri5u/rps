@@ -13,29 +13,35 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-const div = document.querySelector(".results");
-div.textContent = `Human Score: ${humanScore} Computer Score: ${computerScore}`;
-const winner = document.querySelector(".winner");
+const pChoice = document.querySelector(".choices");
+const pWinner = document.querySelector(".winner");
+const pScore = document.querySelector(".score");
+
 
 function playRound(humanChoice, computerChoice){
+    pChoice.innerHTML = `Human:  ${humanChoice} <br> Computer:  ${computerChoice}`;
     if(humanChoice == computerChoice){
         // alert(`It's a tie. Both picked ${humanChoice}`);
+        pWinner.textContent = `Tie`;
     }
     else if((humanChoice == 'rock' && computerChoice == 'scissors')||
             (humanChoice == 'paper' && computerChoice == 'rock') ||
             (humanChoice == 'scissors' && computerChoice == 'paper')){
                 // alert(`Human wins!!! ${humanChoice} beats ${computerChoice}`);
+                pWinner.textContent = `Human`;
                 humanScore++;
             }
     else{
         // alert(`Computer Wins!!! ${computerChoice} beats ${humanChoice}`);
+        pWinner.textContent = `Computer`;
         computerScore++;
     }
-    div.textContent = `Human Score: ${humanScore} Computer Score: ${computerScore}`;
-    if(humanScore == 5)
-        winner.textContent = `Human Wins!!!`;
-    else if(computerScore == 5)
-        winner.textContent = `Computer Wins!!!`;
+    
+
+    if(humanScore == 5 || computerScore == 5){
+        alert(`Winner is: ${(humanScore == 5) ? "Human": "Computer"}`);
+    }
+    pScore.innerHTML = `Human: ${humanScore} <br> Computer: ${computerScore}`;
 
 }
 
@@ -44,6 +50,11 @@ const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
         let human = e.target.id;
+        e.target.style.backgroundColor = "lightpink";
+
+        setTimeout(() => {
+            e.target.style.backgroundColor = "";
+        }, 200);
         // console.log(e.target);
         // console.log(e.target.id);
         let computer = getComputerChoice();
@@ -52,20 +63,4 @@ buttons.forEach((button) => {
 });
 
 
-
-
-
-/*
-    for(let i = 0; i < 5;){
-        let computer = getComputerChoice();
-        let number = getHumanChoice();
-
-        if(isNaN(number) || number < 1 || number > 3){
-            alert("Enter an integer between 1 and 3");
-            continue;
-        }        
-        let human = choices[number - 1];
-        playRound(human, computer);
-        i++;
-    }*/
 

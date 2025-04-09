@@ -1,0 +1,39 @@
+*{
+    /* outline: 1px solid red; */
+}
+.game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.results{
+    display: flex;
+    gap: 20px;
+}
+
+.res{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 2px;
+    text-align: center;
+    background-color: lightblue;
+}
+.res > div:nth-child(2) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: lightgray;
+}
